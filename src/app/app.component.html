@@ -1,0 +1,152 @@
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <div class="jumbotron">
+
+                <h2>Angular 6 Reactive Form validation</h2>
+
+
+                <ng-flash-message></ng-flash-message>
+
+
+                <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+
+
+                    <div class="form-group">
+                        <label for="organizationId">organization Id</label>
+                        <input type="text" class="form-control" formControlName="organizationId" [ngClass]="{
+                'is-invalid':
+                  form.get('organizationId').touched &&
+                  form.get('organizationId').invalid
+              }" required />
+                        <div *ngIf="
+                form.get('organizationId').touched &&
+                form.get('organizationId').invalid
+              " class="invalid-feedback">
+                            <div *ngIf="form.get('organizationId').errors.required">
+                                organizationId is required
+                            </div>
+                            <div *ngIf="form.get('organizationId').errors.minlength">
+                                organization Id must be 6 digit no
+                            </div>
+                            <div *ngIf="form.get('organizationId').errors.maxlength">
+                                organization Id must be 6 digit no
+                            </div>
+                            <div *ngIf="form.get('organizationId').errors.pattern">
+                                organization Id must be valid
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="organizationName">Organization Name</label>
+                        <input type="text" class="form-control" formControlName="organizationName" [ngClass]="{
+                'is-invalid':
+                  form.get('organizationName').touched &&
+                  form.get('organizationName').invalid
+              }" required />
+                        <div *ngIf="
+                form.get('organizationName').touched &&
+                form.get('organizationName').invalid
+              " class="invalid-feedback">
+                            <div *ngIf="form.get('organizationName').errors.required">
+                                organizationName is required
+                            </div>
+
+                            <div *ngIf="form.get('organizationName').errors.pattern">
+                                organizationName must be Alphabet
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" formControlName="email" [ngClass]="{
+                'is-invalid':
+                  form.get('email').touched && form.get('email').invalid
+              }" />
+                        <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                            <div *ngIf="form.get('email').errors.required">
+                                Email Name is required
+                            </div>
+                            <div *ngIf="form.get('email').errors.email">
+                                Email must be a valid email Address
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" formControlName="password" [ngClass]="{
+                'is-invalid':
+                  form.get('password').touched && form.get('password').invalid
+              }" />
+                        <div *ngIf="
+                form.get('password').touched && form.get('password').invalid
+              " class="invalid-feedback">
+                            <div *ngIf="form.get('password').errors.required">
+                                Password is required
+                            </div>
+                            <div *ngIf="form.get('password').errors.pattern">
+                                Password must be special character for 8 alphanumeric length
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="cpassword">Confirm Password</label>
+                        <input type="password" class="form-control" formControlName="cpassword" [ngClass]="{
+                'is-invalid':
+                  form.get('cpassword').touched && form.get('cpassword').invalid
+              }" (change)="passwordChange()" />
+                        <div *ngIf="
+                form.get('cpassword').touched && form.get('cpassword').invalid
+              " class="invalid-feedback">
+                            <div *ngIf="form.get('cpassword').errors.required">
+                                Confirm Password is required
+                            </div>
+                            <div *ngIf="form.get('cpassword').errors.pattern">
+                                Confirm Password must be special character for 8 alphanumeric length
+                            </div>
+
+
+                        </div>
+                        <div *ngIf="isMatch" class="text-danger"> Confirm Password is not valid
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" formControlName="country" [ngClass]="{
+                'is-invalid':
+                  form.get('country').touched && form.get('country').invalid
+              }" required />
+                        <div *ngIf="form.get('country').touched && form.get('country').invalid" class="invalid-feedback">
+                            <div *ngIf="form.get('country').errors.required">
+                                country is required
+                            </div>
+                            <div *ngIf="form.get('country').errors.pattern">
+                                Country must be in alphabet form
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" [disabled]="!form.valid">
+              Register
+            </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
